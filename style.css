@@ -430,3 +430,71 @@ h1 {
   .parade { height: 165px; }
   .parade img { width: 620px; max-width: none; }
 }
+
+/* Hand-drawn three-tier cake, assembled quickly in three pieces */
+.cake-button {
+  height: 470px;
+  margin-top: .1rem;
+}
+
+.cake-stack {
+  bottom: 0;
+  width: 310px;
+  height: 465px;
+}
+
+.cake-slice {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 1;
+  filter: drop-shadow(0 9px 8px rgba(81, 52, 64, .13));
+}
+
+.cake-bottom {
+  z-index: 1;
+  clip-path: inset(53% 0 0 0);
+  animation: illustrated-tier .38s cubic-bezier(.18,1.2,.4,1) .08s both;
+}
+
+.cake-middle {
+  z-index: 2;
+  clip-path: inset(27% 0 43% 0);
+  animation: illustrated-tier .38s cubic-bezier(.18,1.2,.4,1) .48s both;
+}
+
+.cake-top {
+  z-index: 3;
+  clip-path: inset(0 0 70% 0);
+  animation: illustrated-tier .38s cubic-bezier(.18,1.2,.4,1) .88s both;
+}
+
+@keyframes illustrated-tier {
+  0% { opacity: 0; transform: translateY(-75px) scale(.94); }
+  72% { opacity: 1; transform: translateY(5px) scale(1.01); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.cake-stack > .candles {
+  left: 50%;
+  top: 37px;
+  bottom: auto;
+  width: 180px;
+  height: 67px;
+  z-index: 4;
+}
+
+.cake-stack .candle {
+  height: 27px;
+  border-color: #5b3f48;
+}
+
+@media (max-width: 560px) {
+  .birthday-card { padding-top: .7rem; }
+  h1 { font-size: clamp(3rem, 14vw, 4.6rem); }
+  .cake-button { height: 430px; }
+  .cake-stack { width: 285px; height: 427px; transform: translateX(-50%); }
+  .hint { margin-top: -1.3rem; }
+}
