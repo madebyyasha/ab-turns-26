@@ -498,3 +498,167 @@ h1 {
   .cake-stack { width: 285px; height: 427px; transform: translateX(-50%); }
   .hint { margin-top: -1.3rem; }
 }
+
+/* Final coded cake: soft, ornate and fully animatable */
+.cake-button { height: 420px; }
+
+.cake-stack.coded-cake {
+  bottom: 3px;
+  width: 370px;
+  height: 380px;
+  transform: translateX(-50%);
+}
+
+.coded-cake .tier {
+  overflow: visible;
+  border: 2px solid #765763;
+  border-radius: 16px 16px 25px 25px;
+  background:
+    radial-gradient(circle at 17px 48px, rgba(255,255,255,.72) 0 2px, transparent 2.7px) 0 0 / 36px 31px,
+    linear-gradient(180deg, #ffd7df 0%, #f9b9c8 72%, #ee9fb3 100%);
+  box-shadow: inset 0 -7px 0 rgba(204,111,137,.20), 0 5px 8px rgba(101,70,82,.13);
+}
+
+.coded-cake .tier-bottom {
+  bottom: 69px;
+  width: 340px;
+  height: 98px;
+  animation: tier-drop .38s cubic-bezier(.18,1.25,.4,1) .08s both;
+}
+
+.coded-cake .tier-middle {
+  bottom: 151px;
+  width: 265px;
+  height: 86px;
+  background:
+    radial-gradient(circle at 19px 46px, #f7d77d 0 2.5px, transparent 3px) 0 0 / 38px 29px,
+    linear-gradient(180deg, #fff1d9 0%, #ffe0c2 74%, #f2c79f 100%);
+  animation: tier-drop .38s cubic-bezier(.18,1.25,.4,1) .48s both;
+}
+
+.coded-cake .tier-top {
+  bottom: 224px;
+  width: 190px;
+  height: 73px;
+  background:
+    radial-gradient(circle at 16px 41px, rgba(255,255,255,.72) 0 2px, transparent 2.7px) 0 0 / 34px 27px,
+    linear-gradient(180deg, #d8edf0 0%, #bcdfe3 75%, #9ccdd3 100%);
+  animation: tier-drop .38s cubic-bezier(.18,1.25,.4,1) .88s both;
+}
+
+.coded-cake .tier-icing {
+  inset: -2px -2px auto;
+  height: 30px;
+  border: 2px solid #765763;
+  border-radius: 15px 15px 45% 45%;
+  background: #fffaf1;
+  box-shadow: inset 0 -3px 0 #f3e5d5;
+}
+
+.coded-cake .tier-icing::after {
+  left: 6%;
+  right: 6%;
+  bottom: -10px;
+  height: 15px;
+  background: radial-gradient(circle at 10px 0, #fffaf1 0 10px, transparent 10.5px) 0 0 / 25px 15px repeat-x;
+}
+
+.piped-border {
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  bottom: 8px;
+  height: 10px;
+  background: radial-gradient(circle, #fff8e9 0 4px, #d5a8ad 4.3px 5px, transparent 5.3px) 0 50% / 15px 10px repeat-x;
+}
+
+.garland {
+  position: absolute;
+  left: 13%;
+  right: 13%;
+  top: 43px;
+  height: 20px;
+  border-bottom: 3px solid #e67f9d;
+  border-radius: 0 0 50% 50%;
+  opacity: .78;
+}
+
+.decor {
+  position: absolute;
+  z-index: 3;
+  font-style: normal;
+  line-height: 1;
+  text-shadow: 0 1px #fff;
+}
+
+.bow {
+  left: 50%;
+  top: 45px;
+  transform: translateX(-50%);
+  color: #74b8c5;
+  font-family: Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
+.flower { top: 47px; color: #fff3c1; font-size: 1.05rem; -webkit-text-stroke: 1px #d8958d; }
+.flower-one { left: 17%; }
+.flower-two { right: 17%; }
+.cherry { top: 47px; color: #db6675; font-size: .9rem; text-shadow: 0 2px #a94b5a; }
+.cherry::before { content: ""; position: absolute; left: 4px; bottom: 9px; width: 9px; height: 12px; border-left: 2px solid #71845f; border-radius: 50%; transform: rotate(27deg); }
+.cherry-one { left: 17%; }
+.cherry-two { right: 17%; }
+
+.porcelain-stand {
+  position: absolute;
+  left: 50%;
+  bottom: 44px;
+  width: 370px;
+  height: 30px;
+  transform: translateX(-50%);
+  border: 2px solid #765763;
+  border-radius: 50%;
+  background: linear-gradient(#f8fdff, #cce6eb);
+  box-shadow: 0 6px 8px rgba(101,70,82,.14);
+  opacity: 1;
+  animation: plate-in .28s ease-out both;
+}
+
+.porcelain-stand::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 23px;
+  width: 72px;
+  height: 48px;
+  transform: translateX(-50%);
+  border: 2px solid #765763;
+  border-top: 0;
+  border-radius: 8px 8px 20px 20px;
+  background: linear-gradient(90deg, #c7e3e7, #f8fdff 45%, #bddde2);
+}
+
+.porcelain-stand i {
+  position: absolute;
+  left: 50%;
+  top: 63px;
+  width: 128px;
+  height: 20px;
+  transform: translateX(-50%);
+  border: 2px solid #765763;
+  border-radius: 50%;
+  background: #d7edf0;
+}
+
+.coded-cake > .candles {
+  top: auto;
+  bottom: 296px;
+  width: 180px;
+  height: 66px;
+}
+
+@media (max-width: 560px) {
+  .cake-button { height: 390px; }
+  .cake-stack.coded-cake { width: 350px; height: 370px; transform: translateX(-50%) scale(.9); transform-origin: 50% 100%; }
+  .hint { margin-top: -1rem; }
+}

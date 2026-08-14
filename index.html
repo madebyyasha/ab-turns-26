@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#fff8ef">
   <title>Happy Birthday, Ab!</title>
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
   <main class="scene" id="scene">
@@ -17,11 +17,21 @@
       <h1 id="instruction">Blow out<br>the candles.</h1>
 
       <button class="cake-button" id="cakeButton" type="button" aria-label="Blow out the birthday candles">
-        <span class="cake-stack" aria-hidden="true">
-          <img class="cake-slice cake-bottom" src="cake-3-tier.png" alt="">
-          <img class="cake-slice cake-middle" src="cake-3-tier.png" alt="">
-          <img class="cake-slice cake-top" src="cake-3-tier.png" alt="">
+        <span class="cake-stack coded-cake" aria-hidden="true">
+          <span class="tier tier-bottom">
+            <i class="tier-icing"></i><i class="piped-border"></i><i class="garland"></i>
+            <i class="decor flower flower-one">✿</i><i class="decor bow">୨୧</i><i class="decor flower flower-two">✿</i>
+          </span>
+          <span class="tier tier-middle">
+            <i class="tier-icing"></i><i class="piped-border"></i><i class="garland"></i>
+            <i class="decor cherry cherry-one">●</i><i class="decor bow">୨୧</i><i class="decor cherry cherry-two">●</i>
+          </span>
+          <span class="tier tier-top">
+            <i class="tier-icing"></i><i class="piped-border"></i>
+            <i class="decor flower flower-one">✿</i><i class="decor bow">୨୧</i><i class="decor flower flower-two">✿</i>
+          </span>
           <span class="candles" id="candles"></span>
+          <span class="porcelain-stand"><i></i></span>
         </span>
       </button>
 
@@ -43,6 +53,6 @@
       <div class="confetti" id="confetti" aria-hidden="true"></div>
     </section>
   </main>
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>
