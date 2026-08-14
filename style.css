@@ -202,7 +202,7 @@ h1 {
   display: grid;
   place-items: center;
   visibility: hidden;
-  opacity: 0;
+  opacity: 1;
   transition: opacity .7s ease .35s;
 }
 
@@ -287,7 +287,7 @@ h1 {
   bottom: 25px;
   width: 360px;
   height: 105px;
-  animation: tier-drop .42s cubic-bezier(.18,1.25,.4,1) .12s forwards;
+  animation: tier-drop .42s cubic-bezier(.18,1.25,.4,1) .12s both;
 }
 
 .tier-middle {
@@ -297,7 +297,7 @@ h1 {
   background:
     radial-gradient(circle at 25px 57px, #ffd36d 0 3px, transparent 3.5px),
     linear-gradient(180deg, #ffd8df, #f5afbe);
-  animation: tier-drop .42s cubic-bezier(.18,1.25,.4,1) .58s forwards;
+  animation: tier-drop .42s cubic-bezier(.18,1.25,.4,1) .58s both;
 }
 
 .tier-top {
@@ -305,10 +305,11 @@ h1 {
   width: 210px;
   height: 82px;
   background: linear-gradient(180deg, #ffe1e6, #f4b2c0);
-  animation: tier-drop .42s cubic-bezier(.18,1.25,.4,1) 1.04s forwards;
+  animation: tier-drop .42s cubic-bezier(.18,1.25,.4,1) 1.04s both;
 }
 
 @keyframes tier-drop {
+  0% { opacity: 0; transform: translate(-50%, -85px) scale(.92); }
   72% { opacity: 1; transform: translate(-50%, 6px) scale(1.02); }
   100% { opacity: 1; transform: translate(-50%, 0) scale(1); }
 }
@@ -348,11 +349,11 @@ h1 {
 .cake-stack > .plate {
   bottom: 2px;
   width: 405px;
-  opacity: 0;
-  animation: plate-in .3s ease-out forwards;
+  opacity: 1;
+  animation: plate-in .3s ease-out both;
 }
 
-@keyframes plate-in { to { opacity: 1; } }
+@keyframes plate-in { from { opacity: 0; transform: translateX(-50%) scale(.7); } to { opacity: 1; transform: translateX(-50%) scale(1); } }
 
 .cake-stack > .candles {
   left: 50%;
@@ -366,12 +367,12 @@ h1 {
 .cake-stack .candle {
   width: 5px;
   height: 31px;
-  opacity: 0;
+  opacity: 1;
   transform: translateY(-20px) scale(.5);
-  animation: candle-pop .2s cubic-bezier(.2,1.5,.4,1) forwards;
+  animation: candle-pop .2s cubic-bezier(.2,1.5,.4,1) both;
 }
 
-@keyframes candle-pop { to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes candle-pop { from { opacity: 0; transform: translateY(-20px) scale(.5); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
 .cake-stack .flame {
   top: -17px;
@@ -383,6 +384,7 @@ h1 {
   bottom: 1vh;
   height: 225px;
   overflow: visible;
+  z-index: 2;
 }
 
 .parade img {
@@ -392,7 +394,7 @@ h1 {
   width: min(720px, 82vw);
   height: auto;
   object-fit: contain;
-  animation: illustrated-parade 12s linear infinite, parade-bob .48s ease-in-out infinite alternate;
+  animation: illustrated-parade 11s linear infinite, parade-dance .34s ease-in-out infinite alternate;
   animation-play-state: paused;
   filter: drop-shadow(0 8px 10px rgba(60, 43, 53, .12));
 }
@@ -404,9 +406,9 @@ h1 {
   to { left: calc(100vw + 30px); }
 }
 
-@keyframes parade-bob {
-  from { margin-bottom: 0; }
-  to { margin-bottom: 10px; }
+@keyframes parade-dance {
+  from { margin-bottom: 0; transform: rotate(-2.2deg) scaleY(.97); }
+  to { margin-bottom: 18px; transform: rotate(2.2deg) scaleY(1.03); }
 }
 
 .sound-button {
