@@ -15,6 +15,7 @@ let listeningFrame;
 let loudFrames = 0;
 
 function buildCandles() {
+  const candleColors = ['#f08ca7', '#7fc7d2', '#ac95d7', '#f4b184', '#83c9a2', '#f2ca68'];
   for (let i = 0; i < 26; i += 1) {
     const candle = document.createElement('span');
     candle.className = 'candle';
@@ -23,6 +24,7 @@ function buildCandles() {
     candle.style.left = `${col * 14.7 + (row ? 2 : 0)}px`;
     candle.style.bottom = `${row * 22}px`;
     candle.style.animationDelay = `${1.48 + i * .035}s`;
+    candle.style.setProperty('--candle-color', candleColors[i % candleColors.length]);
     candle.innerHTML = '<span class="flame"></span>';
     candleHolder.appendChild(candle);
   }
@@ -38,26 +40,27 @@ async function playBirthdaySong() {
   master.connect(ctx.destination);
 
   const notes = [
-    [264,.28],[264,.18],[297,.46],[264,.46],[352,.46],[330,.78],
-    [264,.28],[264,.18],[297,.46],[264,.46],[396,.46],[352,.78],
-    [264,.28],[264,.18],[528,.46],[440,.46],[352,.46],[330,.46],[297,.78],
-    [466,.28],[466,.18],[440,.46],[352,.46],[396,.46],[352,.9]
+    [392.00,.24],[392.00,.24],[440.00,.48],[392.00,.48],[523.25,.48],[493.88,.86],
+    [392.00,.24],[392.00,.24],[440.00,.48],[392.00,.48],[587.33,.48],[523.25,.86],
+    [392.00,.24],[392.00,.24],[783.99,.48],[659.25,.48],[523.25,.48],[493.88,.48],[440.00,.86],
+    [698.46,.24],[698.46,.24],[659.25,.48],[523.25,.48],[587.33,.48],[523.25,1.05]
   ];
 
   let time = ctx.currentTime + .15;
   notes.forEach(([frequency, duration], index) => {
     const oscillator = ctx.createOscillator();
     const gain = ctx.createGain();
-    oscillator.type = index % 2 ? 'triangle' : 'sine';
+    oscillator.type = 'triangle';
     oscillator.frequency.value = frequency;
     gain.gain.setValueAtTime(0, time);
-    gain.gain.linearRampToValueAtTime(.9, time + .025);
+    gain.gain.linearRampToValueAtTime(.72, time + .035);
+    gain.gain.setValueAtTime(.62, time + Math.max(.04, duration - .09));
     gain.gain.exponentialRampToValueAtTime(.001, time + duration);
     oscillator.connect(gain);
     gain.connect(master);
     oscillator.start(time);
     oscillator.stop(time + duration + .04);
-    time += duration + .055;
+    time += duration + .035;
   });
 }
 
