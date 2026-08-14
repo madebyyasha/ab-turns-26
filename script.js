@@ -5,6 +5,7 @@ const hint = document.querySelector('#hint');
 const scene = document.querySelector('#scene');
 const celebration = document.querySelector('#celebration');
 const confetti = document.querySelector('#confetti');
+const soundButton = document.querySelector('#soundButton');
 
 let celebrated = false;
 let audioContext;
@@ -19,18 +20,19 @@ function buildCandles() {
     candle.className = 'candle';
     const row = i < 13 ? 0 : 1;
     const col = i % 13;
-    candle.style.left = `${col * 21.5 + (row ? 7 : 0)}px`;
-    candle.style.bottom = `${row * 27}px`;
-    candle.style.transform = `rotate(${(i % 5) - 2}deg)`;
+    candle.style.left = `${col * 14.7 + (row ? 2 : 0)}px`;
+    candle.style.bottom = `${row * 22}px`;
+    candle.style.animationDelay = `${1.48 + i * .035}s`;
     candle.innerHTML = '<span class="flame"></span>';
     candleHolder.appendChild(candle);
   }
 }
 
-function playBirthdaySong() {
+async function playBirthdaySong() {
   const AudioCtx = window.AudioContext || window.webkitAudioContext;
   const ctx = audioContext || new AudioCtx();
   audioContext = ctx;
+  if (ctx.state === 'suspended') await ctx.resume();
   const master = ctx.createGain();
   master.gain.value = 0.13;
   master.connect(ctx.destination);
@@ -91,7 +93,7 @@ function stopMicrophone() {
   microphoneStream = null;
 }
 
-function celebrate() {
+async function celebrate() {
   if (celebrated) return;
   celebrated = true;
   stopMicrophone();
@@ -99,7 +101,12 @@ function celebrate() {
   addSmoke();
   hint.textContent = 'Make a wish ✨';
   micButton.hidden = true;
-  playBirthdaySong();
+  try {
+    await playBirthdaySong();
+    soundButton.textContent = '♫ replay birthday song';
+  } catch (error) {
+    soundButton.textContent = '♫ tap for sound';
+  }
   makeConfetti();
   setTimeout(() => {
     scene.classList.add('celebrating');
@@ -139,3 +146,7 @@ async function enableBlowing() {
 buildCandles();
 cakeButton.addEventListener('click', celebrate);
 micButton.addEventListener('click', enableBlowing);
+soundButton.addEventListener('click', async () => {
+  await playBirthdaySong();
+  soundButton.textContent = '♫ replay birthday song';
+});

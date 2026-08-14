@@ -16,11 +16,12 @@
       <p class="date">14 · 08 · 2026</p>
       <h1 id="instruction">Blow out the<br>candles, Ab.</h1>
 
-      <button class="cake-button" id="cakeButton" type="button" aria-label="Blow out Ab's birthday candles">
-        <span class="candles" id="candles" aria-hidden="true"></span>
-        <span class="cake" aria-hidden="true">
-          <span class="icing"></span>
-          <span class="cake-dots"></span>
+      <button class="cake-button" id="cakeButton" type="button" aria-label="Blow out the birthday candles">
+        <span class="cake-stack" aria-hidden="true">
+          <span class="tier tier-bottom"><i class="tier-icing"></i><i class="pearls"></i></span>
+          <span class="tier tier-middle"><i class="tier-icing"></i><i class="bows">♡</i></span>
+          <span class="tier tier-top"><i class="tier-icing"></i><i class="cherries">● &nbsp; ● &nbsp; ●</i></span>
+          <span class="candles" id="candles"></span>
           <span class="plate"></span>
         </span>
       </button>
@@ -31,18 +32,13 @@
 
     <section class="celebration" id="celebration" aria-hidden="true">
       <div class="final-message">
-        <span>🎉</span>
         <h2>Happy Birthday, Ab!</h2>
         <p>🎂 🥳 🎉</p>
+        <button class="sound-button" id="soundButton" type="button">♫ play birthday song</button>
       </div>
 
       <div class="parade" aria-label="A parade of dancing animals">
-        <div class="animal animal-1"><span>🐘</span><i>party stomp</i></div>
-        <div class="animal animal-2"><span>🦆</span><i>tiny march</i></div>
-        <div class="animal animal-3"><span>🐧</span><i>formal guest</i></div>
-        <div class="animal animal-4"><span>🐒</span><i>chaos unit</i></div>
-        <div class="animal animal-5"><span>🦕</span><i>late arrival</i></div>
-        <div class="animal animal-6"><span>🐸</span><i>lead dancer</i></div>
+        <img src="animal-parade.png" alt="A hand-drawn elephant, duck, penguin, monkey, dinosaur and frog dancing in a birthday parade">
       </div>
 
       <div class="confetti" id="confetti" aria-hidden="true"></div>

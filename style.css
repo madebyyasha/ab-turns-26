@@ -251,3 +251,180 @@ h1 {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* Refined three-tier cake */
+.cake-button {
+  height: 390px;
+  margin-top: .35rem;
+}
+
+.cake-stack {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  width: 390px;
+  height: 330px;
+  transform: translateX(-50%);
+}
+
+.tier {
+  position: absolute;
+  left: 50%;
+  display: block;
+  overflow: visible;
+  transform: translate(-50%, -85px) scale(.92);
+  border: 3px solid #493744;
+  border-radius: 18px 18px 28px 28px;
+  background:
+    radial-gradient(circle at 18px 48px, #fff4cb 0 4px, transparent 4.5px),
+    radial-gradient(circle at 51px 66px, #7bc7d0 0 3px, transparent 3.5px),
+    linear-gradient(180deg, #f9bdc8, #f3a2b5);
+  box-shadow: inset 0 -10px 0 #e78da5, 0 7px 0 #d9879d;
+  opacity: 0;
+}
+
+.tier-bottom {
+  bottom: 25px;
+  width: 360px;
+  height: 105px;
+  animation: tier-drop .42s cubic-bezier(.18,1.25,.4,1) .12s forwards;
+}
+
+.tier-middle {
+  bottom: 115px;
+  width: 285px;
+  height: 92px;
+  background:
+    radial-gradient(circle at 25px 57px, #ffd36d 0 3px, transparent 3.5px),
+    linear-gradient(180deg, #ffd8df, #f5afbe);
+  animation: tier-drop .42s cubic-bezier(.18,1.25,.4,1) .58s forwards;
+}
+
+.tier-top {
+  bottom: 192px;
+  width: 210px;
+  height: 82px;
+  background: linear-gradient(180deg, #ffe1e6, #f4b2c0);
+  animation: tier-drop .42s cubic-bezier(.18,1.25,.4,1) 1.04s forwards;
+}
+
+@keyframes tier-drop {
+  72% { opacity: 1; transform: translate(-50%, 6px) scale(1.02); }
+  100% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+
+.tier-icing {
+  position: absolute;
+  inset: -3px -3px auto;
+  height: 34px;
+  border: 3px solid #493744;
+  border-radius: 17px 17px 48% 48%;
+  background: #fff9ef;
+}
+
+.tier-icing::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: -12px;
+  height: 19px;
+  background: radial-gradient(circle at 12px 0, #fff9ef 0 12px, transparent 12.5px) 0 0 / 30px 19px repeat-x;
+}
+
+.pearls, .bows, .cherries {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff4c6;
+  font-style: normal;
+  white-space: nowrap;
+}
+
+.pearls { bottom: 14px; width: 75%; border-bottom: 7px dotted #fff1c7; }
+.bows { bottom: 13px; color: #7ebfca; font-size: 1.6rem; letter-spacing: 2.2rem; }
+.cherries { bottom: 11px; color: #de6674; font-size: 1rem; letter-spacing: .2rem; }
+
+.cake-stack > .plate {
+  bottom: 2px;
+  width: 405px;
+  opacity: 0;
+  animation: plate-in .3s ease-out forwards;
+}
+
+@keyframes plate-in { to { opacity: 1; } }
+
+.cake-stack > .candles {
+  left: 50%;
+  bottom: 270px;
+  width: 190px;
+  height: 68px;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+.cake-stack .candle {
+  width: 5px;
+  height: 31px;
+  opacity: 0;
+  transform: translateY(-20px) scale(.5);
+  animation: candle-pop .2s cubic-bezier(.2,1.5,.4,1) forwards;
+}
+
+@keyframes candle-pop { to { opacity: 1; transform: translateY(0) scale(1); } }
+
+.cake-stack .flame {
+  top: -17px;
+  width: 9px;
+  height: 16px;
+}
+
+.parade {
+  bottom: 1vh;
+  height: 225px;
+  overflow: visible;
+}
+
+.parade img {
+  position: absolute;
+  left: -760px;
+  bottom: 0;
+  width: min(720px, 82vw);
+  height: auto;
+  object-fit: contain;
+  animation: illustrated-parade 12s linear infinite, parade-bob .48s ease-in-out infinite alternate;
+  animation-play-state: paused;
+  filter: drop-shadow(0 8px 10px rgba(60, 43, 53, .12));
+}
+
+.scene.celebrating .parade img { animation-play-state: running; }
+
+@keyframes illustrated-parade {
+  from { left: -760px; }
+  to { left: calc(100vw + 30px); }
+}
+
+@keyframes parade-bob {
+  from { margin-bottom: 0; }
+  to { margin-bottom: 10px; }
+}
+
+.sound-button {
+  display: block;
+  margin: 1.1rem auto 0;
+  border: 1px solid #493744;
+  border-radius: 999px;
+  padding: .6rem 1rem;
+  background: rgba(255,255,255,.78);
+  color: #493744;
+  cursor: pointer;
+  font-size: .75rem;
+}
+
+@media (max-width: 560px) {
+  .cake-button { height: 350px; transform: none; }
+  .cake-stack { width: 340px; height: 305px; transform: translateX(-50%) scale(.87); transform-origin: 50% 100%; }
+  .hint { margin-top: -1.25rem; }
+  .parade { height: 165px; }
+  .parade img { width: 620px; max-width: none; }
+}
